@@ -21,7 +21,7 @@ public class RegisterTests {
                 .log().body()
                 .extract().as(RegisterData.class);
 
-        assertEquals("QpwL5tke4Pnpja7X4", data.getRegister().getToken());
+        assertEquals("token", data.getRegister().getToken());
     }
 
     @Test
