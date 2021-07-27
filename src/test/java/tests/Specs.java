@@ -16,6 +16,14 @@ public class Specs {
             .log().all()
             .contentType(JSON);
 
+    public static RequestSpecification requestToCreate = with()
+            .baseUri("https://reqres.in")
+            .basePath("/api")
+            .log().all()
+            .contentType(JSON)
+            .body("{\"name\": \"morpheus\"," +
+                    "\"job\": \"leader\"}");
+
     public static RequestSpecification requestToRegister = with()
             .baseUri("https://reqres.in")
             .basePath("/api")
@@ -28,6 +36,12 @@ public class Specs {
             .expectStatusCode(200)
             .expectBody("id", is(4))
             .expectBody("token", is("QpwL5tke4Pnpja7X4"))
+            .build();
+
+    public static ResponseSpecification responseToCreate= new ResponseSpecBuilder()
+            .expectStatusCode(201)
+            .expectBody("name", is("morpheus"))
+            .expectBody("job", is("leader"))
             .build();
 
     public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
