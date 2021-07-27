@@ -1,5 +1,6 @@
 package tests;
 
+import models.Register;
 import models.RegisterData;
 import org.junit.jupiter.api.Test;
 
@@ -12,16 +13,16 @@ public class RegisterTests {
 
     @Test
     public void registerSuccessfullLombok() {
-        RegisterData data = given()
+        Register register = given()
                 .spec(requestToRegister)
                 .when()
                 .post("/register")
                 .then()
                 .spec(responseToRegister)
                 .log().body()
-                .extract().as(RegisterData.class);
+                .extract().as(Register.class);
 
-        assertEquals("token", data.getRegister().getToken());
+        assertEquals("QpwL5tke4Pnpja7X4", register.getToken());
     }
 
     @Test
@@ -31,9 +32,9 @@ public class RegisterTests {
                 .when()
                 .post("/register")
                 .then()
-                .spec(responseToRegister)
+                .spec(responseSpec)
                 .log().body()
-                .body("data.findAll{it.token}.token.flatten().",
+                .body("register.findAll{it.token}.token.flatten()",
                         hasItem("QpwL5tke4Pnpja7X4"));
     }
 

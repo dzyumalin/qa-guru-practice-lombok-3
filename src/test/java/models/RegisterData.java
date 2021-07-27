@@ -8,7 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RegisterData {
 
-    @JsonProperty("data")
+    @JsonProperty("register")
     private Register register;
 
 }
