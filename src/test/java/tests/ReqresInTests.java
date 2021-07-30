@@ -72,4 +72,17 @@ public class ReqresInTests {
                 .body("data.findAll{it.id < 8}.first_name.flatten()",
                         hasItem("Michael"));
     }
+
+    @Test
+    public void listResourceTestGroovy() {
+        given()
+                .spec(request)
+                .when()
+                .get("/unknown")
+                .then()
+                .log().body()
+                .body("data.findAll{it.year > 2004}.year.flatten()",
+                        hasItem(2005));
+
+    }
 }

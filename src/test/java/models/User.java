@@ -9,6 +9,7 @@ import lombok.Data;
 public class User {
 
     private Integer id;
+    private Integer year;
     @JsonProperty("email")
     private String email;
     @JsonProperty("first_name")
